@@ -13,4 +13,7 @@ export class GithubApiService {
   getMyInfo(): Observable<IUser> {
     return this.http.get<IUser>(`https://api.github.com/users/Victorteka`);
   }
+  getMyReops() {
+    return this.http.get("https://api.github.com/users/Victorteka/repos");
+  }
 }
