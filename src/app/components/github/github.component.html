@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-3 mt-4">
       <div class="card pl-4 pt-4">
-        <img class="profile-pic" src="{{ myInfo.avatarUrl }}" alt="" />
+        <img class="profile-pic" src="{{ myInfo.avatar_url }}" alt="" />
         <h3 class="ml-4 mt-4">{{ myInfo.name }}</h3>
         <p>{{ myInfo.bio }}</p>
 
@@ -10,9 +10,11 @@
           <i class="fa fa-map-marker"></i
           ><span class="ml-3">{{ myInfo.location }}</span>
         </div>
-        <div class="mt-2">
+        <div class="mt-2" *ngIf="myInfo.blog">
           <i class="fa fa-link"></i>
-          <span class="ml-3">{{ myInfo.blog }}</span>
+          <a href="{{ myInfo.blog }}" target="_blank">
+            <span class="ml-3">{{ myInfo.blog }}</span></a
+          >
         </div>
         <div class="mt-2">
           <span>{{ myInfo.following }} following</span>
@@ -23,24 +25,17 @@
 
     <div class="col-md-9">
       <div class="row">
-        <div class="col-md-6">
+        <div *ngFor="let myRepo of myRepos" class="col-md-6">
           <div class="card mt-4 p-4">
+            <a href="{{ myRepo.html_url }}" target="_blank">
+              <h4 class="">{{ myRepo.name }}</h4></a
+            >
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil,
-              voluptatum! Assumenda iure explicabo facere corporis similique
-              beatae ipsam nesciunt repudiandae nihil laudantium, dolorem unde
-              maiores. Molestiae pariatur autem modi itaque!
+              {{ myRepo.description }}
             </p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card mt-4 p-4">
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil,
-              voluptatum! Assumenda iure explicabo facere corporis similique
-              beatae ipsam nesciunt repudiandae nihil laudantium, dolorem unde
-              maiores. Molestiae pariatur autem modi itaque!
-            </p>
+            <h6>
+              Language: <span class="lang">{{ myRepo.language }}</span>
+            </h6>
           </div>
         </div>
       </div>
