@@ -12,12 +12,15 @@ import { environment } from "src/environments/environment";
 export class GithubApiService {
   constructor(private http: HttpClient) {}
 
-  getMyInfo(): Observable<IUser> {
-    let apiUrl = `https://api.github.com/users/Victorteka?access_token=${environment.accessToken}`;
+  getMyInfo(username: string): Observable<IUser> {
+    let apiUrl = `https://api.github.com/users/${username}?access_token=${environment.accessToken}`;
     return this.http.get<IUser>(apiUrl);
   }
-  getMyRepos(): Observable<IRepos[]> {
-    let apiUrl = `https://api.github.com/users/Victorteka/repos?access_token=${environment.accessToken}`;
+  getMyRepos(username: string): Observable<IRepos[]> {
+    let apiUrl = `https://api.github.com/users/${username}/repos?access_token=${environment.accessToken}`;
     return this.http.get<IRepos[]>(apiUrl);
+  }
+  searchUser(username: string) {
+    return this.http.get(`https://api.github.com/search/users?q=${username}`);
   }
 }

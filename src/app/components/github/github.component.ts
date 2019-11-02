@@ -10,13 +10,33 @@ import { Repository } from "src/app/utils/repository";
 })
 export class GithubComponent implements OnInit {
   myInfo: User;
+  updateInfo = new User("", "", "", "", 0, 0, "");
   myRepos: Repository[] = [];
+  inputText: string;
 
-  constructor(private githubResponse: GithubApiService) {}
+  constructor(private githubResponse: GithubApiService) {
+    this.myInfo = new User("", "", "", "", 0, 0, "");
+  }
+
+  search(searchTerm) {
+    this.inputText = searchTerm;
+    this.githubResponse.searchUser(searchTerm).subscribe(data => {
+      console.log(data["items"][0].login);
+
+      this.updateInfo = new User(
+        data["items"][0].login,
+        data["items"][0].avatar_url,
+        "",
+        "",
+        0,
+        0,
+        ""
+      );
+    });
+  }
 
   ngOnInit() {
-    this.githubResponse.getMyInfo().subscribe(data => {
-      // console.log(data);
+    this.githubResponse.getMyInfo("Victorteka").subscribe(data => {
       this.myInfo = new User(
         data.name,
         data.avatar_url,
@@ -27,7 +47,7 @@ export class GithubComponent implements OnInit {
         data.blog
       );
     });
-    this.githubResponse.getMyRepos().subscribe(data => {
+    this.githubResponse.getMyRepos("Victorteka").subscribe(data => {
       for (let i = 0; i < data.length; i++) {
         let repo = new Repository(
           data[i].name,
@@ -38,7 +58,8 @@ export class GithubComponent implements OnInit {
         );
         this.myRepos.push(repo);
       }
-      console.log(this.myRepos);
     });
+
+    this.search(this.inputText);
   }
 }

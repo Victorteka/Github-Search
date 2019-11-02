@@ -1,6 +1,7 @@
 <div class="container-fluid">
+  <app-search-form (searchTerm)="search($event)" class="m-4"></app-search-form>
   <div class="row">
-    <div class="col-md-3 mt-4">
+    <div class="col-md-3 mt-4" *ngIf="!inputText">
       <div class="card pl-4 pt-4">
         <img class="profile-pic" src="{{ myInfo.avatar_url }}" alt="" />
         <h3 class="ml-4 mt-4">{{ myInfo.name }}</h3>
@@ -22,7 +23,12 @@
         </div>
       </div>
     </div>
-
+    <div class="col-md-3 mt-4" *ngIf="inputText">
+      <div class="card pl-4 pt-4">
+        <img class="profile-pic" src="{{ updateInfo.avatar_url }}" alt="" />
+        <h3 class="ml-4 mt-4">{{ updateInfo.name }}</h3>
+      </div>
+    </div>
     <div class="col-md-9">
       <div class="row">
         <div *ngFor="let myRepo of myRepos" class="col-md-6">
