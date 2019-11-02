@@ -10,15 +10,29 @@ import { GithubRepoService } from "src/app/services/github-repo.service";
 export class RepoComponent implements OnInit {
   repos: Repository[] = [];
 
+  inputRepo: string;
+
   searchRepo(reposearched) {
     this.repoService.getRepos(reposearched).subscribe(data => {
-      console.log(data);
+      for (let i = 0; i < data["items"].length; i++) {
+        let repo = new Repository(
+          data["items"][i].owner.login,
+          data["items"][i].description,
+          data["items"][i].html_url,
+          data["items"][i].language,
+          data["items"][i].created_at
+        );
+        this.repos.push(repo);
+      }
+      console.log(this.repos);
     });
   }
 
   constructor(private repoService: GithubRepoService) {}
 
   ngOnInit() {
-    this.searchRepo("AkanNames");
+    if (this.inputRepo != null) {
+      this.searchRepo(this.inputRepo);
+    }
   }
 }

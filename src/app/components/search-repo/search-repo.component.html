@@ -1,20 +1,22 @@
 <h1 class="text-center">Search for Repos here!!</h1>
-<div class="card p-3 mt-3">
-  <form (ngSubmit)="search()" class="form-inline my-2 my-lg-0 ">
-    <input
-      class="form-control mr-sm-2"
-      type="search"
-      [(ngModel)]="searchRepo"
-      name="search"
-      placeholder="Search by repo name"
-      aria-label="Search"
-    />
-    <button
-      class="btn btn-outline-success my-2 my-sm-0"
-      (keyup)="search()"
-      type="submit"
-    >
-      Search
-    </button>
-  </form>
+<div class="container">
+  <div class="card p-3 mt-3">
+    <form (ngSubmit)="search()" class="form-inline my-2 my-lg-0 ">
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        [(ngModel)]="searchRepo"
+        name="search"
+        placeholder="Search by repo name"
+        aria-label="Search"
+      />
+      <button
+        class="btn btn-outline-success my-2 my-sm-0"
+        (keyup)="search()"
+        type="submit"
+      >
+        Search
+      </button>
+    </form>
+  </div>
 </div>
