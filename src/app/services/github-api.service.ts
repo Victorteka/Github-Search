@@ -28,4 +28,9 @@ export class GithubApiService {
       `https://api.github.com/users/${username}/repos`
     );
   }
+  getRepos(repoName: string) {
+    return this.http.get(
+      `https://api.github.com/search/repositories?q${repoName}`
+    );
+  }
 }

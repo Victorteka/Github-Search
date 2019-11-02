@@ -21,30 +21,43 @@ export class GithubComponent implements OnInit {
 
   search(searchTerm) {
     this.inputText = searchTerm;
-    this.githubResponse.searchUser(searchTerm).subscribe(data => {
-      this.updateInfo = new User(
-        data["items"][0].login,
-        data["items"][0].avatar_url,
-        "",
-        "",
-        0,
-        0,
-        ""
-      );
-    });
-    this.githubResponse.searchRepo(searchTerm).subscribe(data => {
-      this.updateRepos = [];
-      for (let i = 0; i < data.length; i++) {
-        let repo = new Repository(
-          data[i].name,
-          data[i].description,
-          data[i].html_url,
-          data[i].language,
-          data[i].created_at
+    this.githubResponse.searchUser(searchTerm).subscribe(
+      data => {
+        this.updateInfo = new User(
+          data["items"][0].login,
+          data["items"][0].avatar_url,
+          "",
+          "",
+          0,
+          0,
+          ""
         );
-        this.updateRepos.push(repo);
+      },
+      error => {
+        console.log("An error occured");
       }
+    );
+    this.githubResponse.searchRepo(searchTerm).subscribe(
+      data => {
+        this.updateRepos = [];
+        for (let i = 0; i < data.length; i++) {
+          let repo = new Repository(
+            data[i].name,
+            data[i].description,
+            data[i].html_url,
+            data[i].language,
+            data[i].created_at
+          );
+          this.updateRepos.push(repo);
+        }
 
+        console.log(data);
+      },
+      error => {
+        console.log("An error occured");
+      }
+    );
+    this.githubResponse.getRepos(searchTerm).subscribe(data => {
       console.log(data);
     });
   }

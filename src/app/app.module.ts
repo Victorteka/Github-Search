@@ -8,9 +8,10 @@ import { AppComponent } from "./app.component";
 import { GithubComponent } from "./components/github/github.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { SearchFormComponent } from './components/search-form/search-form.component';
+import { RepoOverlayDirective } from './repo-overlay.directive';
 
 @NgModule({
-  declarations: [AppComponent, GithubComponent, NavbarComponent, SearchFormComponent],
+  declarations: [AppComponent, GithubComponent, NavbarComponent, SearchFormComponent, RepoOverlayDirective],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent]
