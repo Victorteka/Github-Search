@@ -50,7 +50,7 @@ export class GithubComponent implements OnInit {
           );
           this.updateRepos.push(repo);
         }
-
+        console.log(data[0].created_at);
         console.log(data);
       },
       error => {

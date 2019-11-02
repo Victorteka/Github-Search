@@ -4,6 +4,6 @@ export class Repository {
     public description: string,
     public html_url: string,
     public language: string,
-    public createdAt: Date
+    public created_at: Date
   ) {}
 }

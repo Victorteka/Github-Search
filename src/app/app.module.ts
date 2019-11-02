@@ -9,9 +9,10 @@ import { GithubComponent } from "./components/github/github.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { RepoOverlayDirective } from './repo-overlay.directive';
+import { DateCountPipe } from './date-count.pipe';
 
 @NgModule({
-  declarations: [AppComponent, GithubComponent, NavbarComponent, SearchFormComponent, RepoOverlayDirective],
+  declarations: [AppComponent, GithubComponent, NavbarComponent, SearchFormComponent, RepoOverlayDirective, DateCountPipe],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent]

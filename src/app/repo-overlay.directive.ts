@@ -7,7 +7,7 @@ export class RepoOverlayDirective {
   constructor(private elem: ElementRef) {}
 
   @HostListener("mouseenter") onMouseEnter() {
-    this.overlay("rgba(0,0,0,0.5)");
+    this.overlay("rgba(0,0,0,0.3)");
   }
 
   @HostListener("mouseleave") onMouseLeave() {
