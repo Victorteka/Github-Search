@@ -57,9 +57,14 @@ export class GithubComponent implements OnInit {
         console.log("An error occured");
       }
     );
-    this.githubResponse.getRepos(searchTerm).subscribe(data => {
-      console.log(data);
-    });
+    this.githubResponse.getRepos(searchTerm).subscribe(
+      data => {
+        console.log(data);  
+      },
+      error => {
+        console.log("An Error occured");
+      }
+    );
   }
 
   ngOnInit() {

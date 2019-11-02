@@ -7,12 +7,23 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { GithubComponent } from "./components/github/github.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
-import { SearchFormComponent } from './components/search-form/search-form.component';
-import { RepoOverlayDirective } from './repo-overlay.directive';
-import { DateCountPipe } from './date-count.pipe';
+import { SearchFormComponent } from "./components/search-form/search-form.component";
+import { RepoOverlayDirective } from "./repo-overlay.directive";
+import { DateCountPipe } from "./date-count.pipe";
+import { RepoComponent } from './components/repo/repo.component';
+import { SearchRepoComponent } from './components/search-repo/search-repo.component';
 
 @NgModule({
-  declarations: [AppComponent, GithubComponent, NavbarComponent, SearchFormComponent, RepoOverlayDirective, DateCountPipe],
+  declarations: [
+    AppComponent,
+    GithubComponent,
+    NavbarComponent,
+    SearchFormComponent,
+    RepoOverlayDirective,
+    DateCountPipe,
+    RepoComponent,
+    SearchRepoComponent
+  ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent]
