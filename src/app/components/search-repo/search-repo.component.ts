@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 
 @Component({
-  selector: 'app-search-repo',
-  templateUrl: './search-repo.component.html',
-  styleUrls: ['./search-repo.component.css']
+  selector: "app-search-repo",
+  templateUrl: "./search-repo.component.html",
+  styleUrls: ["./search-repo.component.css"]
 })
 export class SearchRepoComponent implements OnInit {
+  searchRepo: any;
 
-  constructor() { }
+  @Output() repoName = new EventEmitter<any>();
 
-  ngOnInit() {
-  }
+  constructor() {}
 
+  ngOnInit() {}
 }
