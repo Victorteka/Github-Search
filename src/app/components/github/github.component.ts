@@ -10,8 +10,9 @@ import { Repository } from "src/app/utils/repository";
 })
 export class GithubComponent implements OnInit {
   myInfo: User;
-  updateInfo = new User("", "", "", "", 0, 0, "");
+  updateInfo: User;
   myRepos: Repository[] = [];
+  updateRepos: Repository[] = [];
   inputText: string;
 
   constructor(private githubResponse: GithubApiService) {
@@ -21,8 +22,6 @@ export class GithubComponent implements OnInit {
   search(searchTerm) {
     this.inputText = searchTerm;
     this.githubResponse.searchUser(searchTerm).subscribe(data => {
-      console.log(data["items"][0].login);
-
       this.updateInfo = new User(
         data["items"][0].login,
         data["items"][0].avatar_url,
@@ -33,9 +32,26 @@ export class GithubComponent implements OnInit {
         ""
       );
     });
+    this.githubResponse.searchRepo(searchTerm).subscribe(data => {
+      this.updateRepos = [];
+      for (let i = 0; i < data.length; i++) {
+        let repo = new Repository(
+          data[i].name,
+          data[i].description,
+          data[i].html_url,
+          data[i].language,
+          data[i].created_at
+        );
+        this.updateRepos.push(repo);
+      }
+
+      console.log(data);
+    });
   }
 
   ngOnInit() {
+    this.updateInfo = new User("", "", "", "", 0, 0, "");
+
     this.githubResponse.getMyInfo("Victorteka").subscribe(data => {
       this.myInfo = new User(
         data.name,
@@ -59,7 +75,8 @@ export class GithubComponent implements OnInit {
         this.myRepos.push(repo);
       }
     });
-
-    this.search(this.inputText);
+    if (this.inputText) {
+      this.search(this.inputText);
+    }
   }
 }

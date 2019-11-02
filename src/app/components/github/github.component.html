@@ -29,7 +29,7 @@
         <h3 class="ml-4 mt-4">{{ updateInfo.name }}</h3>
       </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9" *ngIf="!inputText">
       <div class="row">
         <div *ngFor="let myRepo of myRepos" class="col-md-6">
           <div class="card mt-4 p-4">
@@ -41,6 +41,23 @@
             </p>
             <h6>
               Language: <span class="lang">{{ myRepo.language }}</span>
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9" *ngIf="inputText">
+      <div class="row">
+        <div *ngFor="let updateRepo of updateRepos" class="col-md-6">
+          <div class="card mt-4 p-4">
+            <a href="{{ updateRepo.html_url }}" target="_blank">
+              <h4 class="">{{ updateRepo.name }}</h4></a
+            >
+            <p>
+              {{ updateRepo.description }}
+            </p>
+            <h6>
+              Language: <span class="lang">{{ updateRepo.language }}</span>
             </h6>
           </div>
         </div>

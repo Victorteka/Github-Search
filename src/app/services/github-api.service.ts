@@ -23,4 +23,9 @@ export class GithubApiService {
   searchUser(username: string) {
     return this.http.get(`https://api.github.com/search/users?q=${username}`);
   }
+  searchRepo(username: string): Observable<IRepos[]> {
+    return this.http.get<IRepos[]>(
+      `https://api.github.com/users/${username}/repos`
+    );
+  }
 }
