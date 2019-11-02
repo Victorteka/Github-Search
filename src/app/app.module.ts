@@ -12,6 +12,7 @@ import { RepoOverlayDirective } from "./repo-overlay.directive";
 import { DateCountPipe } from "./date-count.pipe";
 import { RepoComponent } from './components/repo/repo.component';
 import { SearchRepoComponent } from './components/search-repo/search-repo.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SearchRepoComponent } from './components/search-repo/search-repo.compon
     RepoOverlayDirective,
     DateCountPipe,
     RepoComponent,
-    SearchRepoComponent
+    SearchRepoComponent,
+    NotFoundComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
