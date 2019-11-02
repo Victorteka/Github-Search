@@ -3,9 +3,16 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4" *ngFor="let repo of repos">
-      <div class="card mt-3">
-        <h4>{{ repo.name }}</h4>
+      <div class="card mt-3 p-3">
+        <a href="{{ repo.html_url }}" target="_blank">
+          <h4>{{ repo.name }}</h4></a
+        >
         <p>{{ repo.description }}</p>
+        <div class="row">
+          <span class="ml-2">Language:</span>
+          <span class="ml-1">{{ repo.language }}</span>
+          <span class="ml-4">{{ repo.created_at | dateCount }}</span>
+        </div>
       </div>
     </div>
   </div>
