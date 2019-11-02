@@ -10,6 +10,11 @@ export class SearchRepoComponent implements OnInit {
 
   @Output() repoName = new EventEmitter<any>();
 
+  search() {
+    this.repoName.emit(this.searchRepo);
+    this.searchRepo = "";
+  }
+
   constructor() {}
 
   ngOnInit() {}
