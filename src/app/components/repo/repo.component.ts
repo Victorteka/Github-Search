@@ -13,6 +13,7 @@ export class RepoComponent implements OnInit {
   inputRepo: string;
 
   searchRepo(reposearched) {
+    this.repos = [];
     this.repoService.getRepos(reposearched).subscribe(data => {
       for (let i = 0; i < data["items"].length; i++) {
         let repo = new Repository(
