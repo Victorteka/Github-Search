@@ -4,7 +4,9 @@
     <div class="col-md-3 mt-4" *ngIf="!inputText">
       <div class="card pl-4 pt-4">
         <img class="profile-pic" src="{{ myInfo.avatar_url }}" alt="" />
-        <h3 class="ml-4 mt-4">{{ myInfo.name }}</h3>
+        <a href="{{ myInfo.html_url }}" target="_blank"
+          ><h3 class="ml-4 mt-4">{{ myInfo.name }}</h3></a
+        >
         <p>{{ myInfo.bio }}</p>
 
         <div>
@@ -26,7 +28,9 @@
     <div class="col-md-3 mt-4" *ngIf="inputText">
       <div class="card pl-4 pt-4">
         <img class="profile-pic" src="{{ updateInfo.avatar_url }}" alt="" />
-        <h3 class="ml-4 mt-4">{{ updateInfo.name }}</h3>
+        <a href="{{ updateInfo.html_url }}" target="_blank"
+          ><h3 class="ml-4 mt-4">{{ updateInfo.name }}</h3></a
+        >
       </div>
     </div>
     <div class="col-md-9" *ngIf="!inputText">

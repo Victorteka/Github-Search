@@ -6,4 +6,5 @@ export interface IUser {
   followers: number;
   following: number;
   blog: string;
+  html_url: string;
 }

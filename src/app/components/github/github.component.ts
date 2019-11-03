@@ -16,7 +16,7 @@ export class GithubComponent implements OnInit {
   inputText: string;
 
   constructor(private githubResponse: GithubApiService) {
-    this.myInfo = new User("", "", "", "", 0, 0, "");
+    this.myInfo = new User("", "", "", "", 0, 0, "", "");
   }
 
   search(searchTerm) {
@@ -30,7 +30,8 @@ export class GithubComponent implements OnInit {
           "",
           0,
           0,
-          ""
+          "",
+          data["items"][0].html_url
         );
       },
       error => {
@@ -59,7 +60,7 @@ export class GithubComponent implements OnInit {
     );
     this.githubResponse.getRepos(searchTerm).subscribe(
       data => {
-        console.log(data);  
+        console.log(data);
       },
       error => {
         console.log("An Error occured");
@@ -68,7 +69,7 @@ export class GithubComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.updateInfo = new User("", "", "", "", 0, 0, "");
+    this.updateInfo = new User("", "", "", "", 0, 0, "", "");
 
     this.githubResponse.getMyInfo("Victorteka").subscribe(data => {
       this.myInfo = new User(
@@ -78,7 +79,8 @@ export class GithubComponent implements OnInit {
         data.bio,
         data.followers,
         data.following,
-        data.blog
+        data.blog,
+        data.html_url
       );
     });
     this.githubResponse.getMyRepos("Victorteka").subscribe(data => {
