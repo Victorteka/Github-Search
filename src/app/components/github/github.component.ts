@@ -35,7 +35,7 @@ export class GithubComponent implements OnInit {
         );
       },
       error => {
-        console.log("An error occured");
+        console.log("Error: " + JSON.stringify(error));
       }
     );
     this.githubResponse.searchRepo(searchTerm).subscribe(
@@ -55,7 +55,7 @@ export class GithubComponent implements OnInit {
         console.log(data);
       },
       error => {
-        console.log("An error occured");
+        console.log("Error: " + JSON.stringify(error));
       }
     );
     this.githubResponse.getRepos(searchTerm).subscribe(
@@ -63,7 +63,7 @@ export class GithubComponent implements OnInit {
         console.log(data);
       },
       error => {
-        console.log("An Error occured");
+        console.log("Error: " + JSON.stringify(error));
       }
     );
   }
@@ -71,30 +71,40 @@ export class GithubComponent implements OnInit {
   ngOnInit() {
     this.updateInfo = new User("", "", "", "", 0, 0, "", "");
 
-    this.githubResponse.getMyInfo("Victorteka").subscribe(data => {
-      this.myInfo = new User(
-        data.name,
-        data.avatar_url,
-        data.location,
-        data.bio,
-        data.followers,
-        data.following,
-        data.blog,
-        data.html_url
-      );
-    });
-    this.githubResponse.getMyRepos("Victorteka").subscribe(data => {
-      for (let i = 0; i < data.length; i++) {
-        let repo = new Repository(
-          data[i].name,
-          data[i].description,
-          data[i].html_url,
-          data[i].language,
-          data[i].created_at
+    this.githubResponse.getMyInfo("Victorteka").subscribe(
+      data => {
+        this.myInfo = new User(
+          data.name,
+          data.avatar_url,
+          data.location,
+          data.bio,
+          data.followers,
+          data.following,
+          data.blog,
+          data.html_url
         );
-        this.myRepos.push(repo);
+      },
+      error => {
+        console.log("Error: " + JSON.stringify(error));
       }
-    });
+    );
+    this.githubResponse.getMyRepos("Victorteka").subscribe(
+      data => {
+        for (let i = 0; i < data.length; i++) {
+          let repo = new Repository(
+            data[i].name,
+            data[i].description,
+            data[i].html_url,
+            data[i].language,
+            data[i].created_at
+          );
+          this.myRepos.push(repo);
+        }
+      },
+      error => {
+        console.log("Error: " + JSON.stringify(error));
+      }
+    );
     if (this.inputText) {
       this.search(this.inputText);
     }

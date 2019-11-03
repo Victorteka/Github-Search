@@ -14,19 +14,24 @@ export class RepoComponent implements OnInit {
 
   searchRepo(reposearched) {
     this.repos = [];
-    this.repoService.getRepos(reposearched).subscribe(data => {
-      for (let i = 0; i < data["items"].length; i++) {
-        let repo = new Repository(
-          data["items"][i].owner.login,
-          data["items"][i].description,
-          data["items"][i].html_url,
-          data["items"][i].language,
-          data["items"][i].created_at
-        );
-        this.repos.push(repo);
+    this.repoService.getRepos(reposearched).subscribe(
+      data => {
+        for (let i = 0; i < data["items"].length; i++) {
+          let repo = new Repository(
+            data["items"][i].owner.login,
+            data["items"][i].description,
+            data["items"][i].html_url,
+            data["items"][i].language,
+            data["items"][i].created_at
+          );
+          this.repos.push(repo);
+        }
+        console.log(this.repos);
+      },
+      error => {
+        console.log("Error: " + JSON.stringify(error));
       }
-      console.log(this.repos);
-    });
+    );
   }
 
   constructor(private repoService: GithubRepoService) {}
