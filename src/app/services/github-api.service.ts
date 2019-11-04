@@ -25,12 +25,12 @@ export class GithubApiService {
   }
   searchRepo(username: string): Observable<IRepos[]> {
     return this.http.get<IRepos[]>(
-      `https://api.github.com/users/${username}/repos`
+      `https://api.github.com/users/${username}/repos?access_token=${environment.accessToken}`
     );
   }
   getRepos(repoName: string) {
     return this.http.get(
-      `https://api.github.com/search/repositories?q${repoName}`
+      `https://api.github.com/search/repositories?q${repoName}?access_token=${environment.accessToken}`
     );
   }
 }
