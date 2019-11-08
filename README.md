@@ -4,6 +4,10 @@
 
 - Victor Teka
 
+# Deploy
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c656697b-b74c-461d-a47e-7ab0d233d5d3/deploy-status)](https://app.netlify.com/sites/github-quick-search/deploys)
+
 # Description
 
 A web app that allow user using their github username to search for their github repos. One can also search for a repo using the username.
